@@ -12,5 +12,9 @@ export const siteConfig = {
       title: "Templates",
       href: "/templates",
     },
+    {
+      title: "Tier Lists",
+      href: "/tierlists",
+    },
   ],
 }

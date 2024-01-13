@@ -1,7 +1,6 @@
 import "dotenv/config"
 import { getS3Client, getUser } from "../server-utils"
-import { GetObjectCommand, ListObjectsV2Output } from "@aws-sdk/client-s3"
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
+import { ListObjectsV2Output } from "@aws-sdk/client-s3"
 
 export async function fetchImagesInTemplate(templateName: string) {
   const { user } = await getUser({ queryUserFromDB: true })
@@ -18,12 +17,7 @@ export async function fetchImagesInTemplate(templateName: string) {
   if (data.Contents) {
     const images = await Promise.all(
       data.Contents.map(async (image) => {
-        const command = new GetObjectCommand({
-          Bucket: process.env.BUCKET_NAME,
-          Key: image.Key,
-        })
-        const signedUrl = await getSignedUrl(s3, command, { expiresIn: 3600 })
-        return signedUrl
+        return `${process.env.S3_ENDPOINT}/${process.env.BUCKET_NAME}/${image.Key}`
       })
     )
 

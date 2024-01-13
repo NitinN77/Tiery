@@ -15,7 +15,11 @@ type PageProps = {
 
 const TierList = ({ images, templateName }: PageProps) => {
   const [rows, setRows] = useState<Row[]>([
-    { id: randomBytes(10).toString("hex"), label: "a", urls: [] },
+    { id: randomBytes(10).toString("hex"), label: "S", urls: [] },
+    { id: randomBytes(10).toString("hex"), label: "A", urls: [] },
+    { id: randomBytes(10).toString("hex"), label: "B", urls: [] },
+    { id: randomBytes(10).toString("hex"), label: "C", urls: [] },
+    { id: randomBytes(10).toString("hex"), label: "F", urls: [] },
     {
       id: "unranked",
       label: "unranked",
@@ -28,7 +32,6 @@ const TierList = ({ images, templateName }: PageProps) => {
   return (
     <DragDropContext
       onDragEnd={({ destination, source }) => {
-        // // dropped outside the list
         if (!destination) {
           return
         }
