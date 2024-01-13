@@ -32,7 +32,11 @@
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7",
     "tsx": "^4.7.0",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "@types/react-beautiful-dnd": "^13.1.7",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1"
   },
   "devDependencies": {
     "@types/node": "^20",
