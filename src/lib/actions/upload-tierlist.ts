@@ -13,7 +13,7 @@ export async function uploadTierlist(
   const template = await db
     .select()
     .from(templates)
-    .where(eq(templates.name, templateName))
+    .where(eq(templates.name, templateName.replace("%20", " ")))
 
   await db.insert(tierlists).values({ templateId: template[0].id, data: rows })
 
