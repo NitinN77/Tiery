@@ -1,10 +1,10 @@
 "use client"
 import { DragDropContext } from "react-beautiful-dnd"
 import { reorderRows, reorder } from "./reorder"
-import { Row } from "./types"
+import { Row } from "@/types/tierlist"
 import { AuthorList } from "./AuthorList"
 import { randomBytes } from "crypto"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 type PageProps = {
   images: string[]
@@ -19,19 +19,6 @@ const TierList = ({ images }: PageProps) => {
       urls: images,
     },
   ])
-
-  useEffect(() => {
-    const tl = localStorage.getItem("tier-list")
-
-    if (tl) {
-      setRows(JSON.parse(tl))
-      return
-    }
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem("tier-list", JSON.stringify(rows))
-  })
 
   return (
     <DragDropContext
@@ -58,18 +45,6 @@ const TierList = ({ images }: PageProps) => {
           }}
         >
           add row
-        </button>
-        <button
-          style={{ marginLeft: 30 }}
-          onClick={() => {
-            const yes = window.confirm("all data will be lost :)")
-            if (yes) {
-              localStorage.setItem("tier-list", "")
-              window.location.reload()
-            }
-          }}
-        >
-          reset
         </button>
         {rows.map((row, i) => (
           <AuthorList
