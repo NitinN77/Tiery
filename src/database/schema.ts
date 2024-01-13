@@ -4,10 +4,14 @@ import {
   text,
   primaryKey,
   integer,
+  serial,
+  jsonb,
 } from "drizzle-orm/pg-core"
 // @ts-ignore
 import type { AdapterAccount } from "@auth/core/adapters"
-import { InferSelectModel } from "drizzle-orm"
+import { InferSelectModel, relations } from "drizzle-orm"
+
+// AUTH
 
 export const users = pgTable("user", {
   id: text("id").notNull().primaryKey(),
@@ -16,6 +20,10 @@ export const users = pgTable("user", {
   emailVerified: timestamp("emailVerified", { mode: "date" }),
   image: text("image"),
 })
+
+export const usersRelations = relations(users, ({ many }) => ({
+  templates: many(templates),
+}))
 
 export type userSelectSchema = InferSelectModel<typeof users>
 
@@ -62,3 +70,34 @@ export const verificationTokens = pgTable(
     compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
   })
 )
+
+// Template
+
+export const templates = pgTable("templates", {
+  id: serial("id").notNull().primaryKey(),
+  userId: text("userId"),
+  name: text("name"),
+})
+
+export const templatesRelations = relations(templates, ({ one, many }) => ({
+  creator: one(users, {
+    fields: [templates.userId],
+    references: [users.id],
+  }),
+  tierlists: many(tierlists),
+}))
+
+// Tierlist
+
+export const tierlists = pgTable("tierlists", {
+  id: serial("id").notNull().primaryKey(),
+  templateId: integer("templateId"),
+  data: jsonb("data"),
+})
+
+export const tierlistsRelations = relations(tierlists, ({ one }) => ({
+  template: one(templates, {
+    fields: [tierlists.templateId],
+    references: [templates.id],
+  }),
+}))
