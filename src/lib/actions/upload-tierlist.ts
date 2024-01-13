@@ -11,7 +11,6 @@ export async function uploadTierlist(
   templateName: string,
   formData: FormData
 ) {
-  console.log(templateName)
   const template = await db
     .select()
     .from(templates)
