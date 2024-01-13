@@ -1,19 +1,22 @@
 "use client"
 import { DragDropContext } from "react-beautiful-dnd"
-import images from "./images.json"
 import { reorderRows, reorder } from "./reorder"
 import { Row } from "./types"
 import { AuthorList } from "./AuthorList"
 import { randomBytes } from "crypto"
 import { useEffect, useState } from "react"
 
-const TierList = () => {
+type PageProps = {
+  images: string[]
+}
+
+const TierList = ({ images }: PageProps) => {
   const [rows, setRows] = useState<Row[]>([
     { id: randomBytes(10).toString("hex"), label: "a", urls: [] },
     {
       id: "unranked",
       label: "unranked",
-      urls: Object.values(images),
+      urls: images,
     },
   ])
 

@@ -76,6 +76,7 @@ export const AuthorList: React.FC<Props> = ({
                 <button onClick={remove}>remove</button>
               )}
             </div>
+
             {row.urls.slice(0, 100).map((url, index) => (
               <Draggable key={url} draggableId={url} index={index}>
                 {(dragProvided) => (
