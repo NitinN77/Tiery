@@ -4,6 +4,7 @@ import { db } from "@/database/db"
 import { templates, tierlists } from "@/database/schema"
 import { Row } from "@/types/tierlist"
 import { eq } from "drizzle-orm"
+import { revalidatePath } from "next/cache"
 
 export async function uploadTierlist(
   rows: Row[],
@@ -17,5 +18,6 @@ export async function uploadTierlist(
 
   await db.insert(tierlists).values({ templateId: template[0].id, data: rows })
 
+  revalidatePath("/tierlists")
   return { message: "Uploaded tierlist" }
 }
