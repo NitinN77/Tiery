@@ -11,10 +11,11 @@ export async function uploadTierlist(
   templateName: string,
   formData: FormData
 ) {
+  console.log(templateName)
   const template = await db
     .select()
     .from(templates)
-    .where(eq(templates.name, templateName.replace("%20", " ")))
+    .where(eq(templates.name, templateName.replaceAll("%20", " ")))
 
   await db.insert(tierlists).values({ templateId: template[0].id, data: rows })
 
