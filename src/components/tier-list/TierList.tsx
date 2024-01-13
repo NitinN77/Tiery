@@ -5,12 +5,15 @@ import { Row } from "@/types/tierlist"
 import { AuthorList } from "./AuthorList"
 import { randomBytes } from "crypto"
 import { useState } from "react"
+import { Button } from "../ui/button"
+import { uploadTierlist } from "@/lib/actions/upload-tierlist"
 
 type PageProps = {
   images: string[]
+  templateName: string
 }
 
-const TierList = ({ images }: PageProps) => {
+const TierList = ({ images, templateName }: PageProps) => {
   const [rows, setRows] = useState<Row[]>([
     { id: randomBytes(10).toString("hex"), label: "a", urls: [] },
     {
@@ -19,6 +22,8 @@ const TierList = ({ images }: PageProps) => {
       urls: images,
     },
   ])
+
+  const uploadTierlistWrapper = uploadTierlist.bind(null, rows, templateName)
 
   return (
     <DragDropContext
@@ -32,20 +37,25 @@ const TierList = ({ images }: PageProps) => {
       }}
     >
       <div>
-        <button
-          onClick={() => {
-            setRows([
-              {
-                id: randomBytes(10).toString("hex"),
-                label: "",
-                urls: [],
-              },
-              ...rows,
-            ])
-          }}
-        >
-          add row
-        </button>
+        <div className="flex justify-between">
+          <Button
+            onClick={() => {
+              setRows([
+                {
+                  id: randomBytes(10).toString("hex"),
+                  label: "",
+                  urls: [],
+                },
+                ...rows,
+              ])
+            }}
+          >
+            Add Row
+          </Button>
+          <form action={uploadTierlistWrapper}>
+            <Button>Save</Button>
+          </form>
+        </div>
         {rows.map((row, i) => (
           <AuthorList
             internalScroll

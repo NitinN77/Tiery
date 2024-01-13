@@ -5,13 +5,13 @@ import CreatelistButton from "./createlist-button"
 export default async function Page({
   params,
 }: {
-  params: { templateId: string }
+  params: { templateName: string }
 }) {
-  const images = await fetchImagesInTemplate(decodeURI(params.templateId))
+  const images = await fetchImagesInTemplate(decodeURI(params.templateName))
   return (
     <div>
       <div className="flex justify-between">
-        <p className="text-2xl font-bold">{decodeURI(params.templateId)}</p>
+        <p className="text-2xl font-bold">{decodeURI(params.templateName)}</p>
         <CreatelistButton />
       </div>
 
