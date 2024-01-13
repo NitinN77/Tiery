@@ -1,16 +1,16 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { fetchImagesInAlbum } from "@/lib/data/fetch-images-in-album"
+import { fetchImagesInTemplate } from "@/lib/data/fetch-images-in-template"
 import Image from "next/image"
 
 export default async function Page({
   params,
 }: {
-  params: { albumId: string }
+  params: { templateId: string }
 }) {
-  const images = await fetchImagesInAlbum(decodeURI(params.albumId))
+  const images = await fetchImagesInTemplate(decodeURI(params.templateId))
   return (
     <div>
-      <p className="text-2xl font-bold">{decodeURI(params.albumId)}</p>
+      <p className="text-2xl font-bold">{decodeURI(params.templateId)}</p>
       <br />
       <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
         {images?.map((image) => (

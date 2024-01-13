@@ -8,14 +8,14 @@ import { useEffect, useRef } from "react"
 import { useFormState, useFormStatus } from "react-dom"
 import { toast } from "sonner"
 
-export default function CreateAlbum() {
+export default function CreateTemplate() {
   const initialState = { message: null, errors: {} }
   const [state, dispatch] = useFormState(uploadImages, initialState)
   const formRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
     if (state.message === "Uploaded images") {
-      toast("Album created and images uploaded successfully!")
+      toast("Template created and images uploaded successfully!")
     }
   }, [state])
 
@@ -28,10 +28,10 @@ export default function CreateAlbum() {
           dispatch(formData)
         }}
       >
-        <Input type="text" name="albumName" placeholder="Album Name" />
+        <Input type="text" name="templateName" placeholder="Template Name" />
         <div id="customer-error" aria-live="polite" aria-atomic="true">
-          {state.errors?.albumName &&
-            state.errors.albumName.map((error: string) => (
+          {state.errors?.templateName &&
+            state.errors.templateName.map((error: string) => (
               <p className="mt-2 text-sm text-red-500" key={error}>
                 {error}
               </p>

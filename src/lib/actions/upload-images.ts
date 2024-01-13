@@ -8,15 +8,15 @@ import { revalidatePath } from "next/cache"
 
 const uploadImagesRequest = z.object({
   pictures: z.instanceof(File).array(),
-  albumName: z
+  templateName: z
     .string()
-    .min(1, "Album Name must be between 1 and 60 characters long")
-    .max(60, "Album Name must be between 1 and 60 characters long"),
+    .min(1, "Template Name must be between 1 and 60 characters long")
+    .max(60, "Template Name must be between 1 and 60 characters long"),
 })
 
 export type State = {
   errors?: {
-    albumName?: string[]
+    templateName?: string[]
     pictures?: string[]
   }
   message?: string | null
@@ -32,7 +32,7 @@ export async function uploadImages(
   }
   const parsedInput = uploadImagesRequest.safeParse({
     pictures: formData.getAll("pictures"),
-    albumName: formData.get("albumName"),
+    templateName: formData.get("templateName"),
   })
 
   if (!parsedInput.success) {
@@ -65,7 +65,7 @@ export async function uploadImages(
         {
           Body: buffer,
           Bucket: process.env.BUCKET_NAME,
-          Key: `${user.id}/${parsedInput.data.albumName}/${fileName}`,
+          Key: `${user.id}/${parsedInput.data.templateName}/${fileName}`,
         },
         (err) => {
           if (err) {

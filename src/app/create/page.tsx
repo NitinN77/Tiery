@@ -1,10 +1,10 @@
 import { auth } from "@/auth"
-import CreateAlbum from "./create-album"
+import CreateTemplate from "./create-template"
 
 export default async function Page() {
   const session = await auth()
   if (!session) {
     throw Error("Authentication Error")
   }
-  return <CreateAlbum />
+  return <CreateTemplate />
 }

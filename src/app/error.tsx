@@ -13,7 +13,7 @@ export default function Error({
         <div className="text-center">
           <h2 className="text-2xl font-bold">Authentication Error</h2>
           <br />
-          <p>Please log in to view your albums and create new ones</p>
+          <p>Please log in to view your templates and create new ones</p>
         </div>
       ) : (
         <div>
