@@ -76,7 +76,7 @@ export async function uploadImages(
     })
   )
 
-  revalidatePath("/")
+  revalidatePath("/templates")
 
   return { message: "Uploaded images" }
 }
