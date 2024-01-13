@@ -24,7 +24,8 @@ const FrozenListRow = ({ row }: { row: Row }) => {
             display: "flex",
             backgroundColor: "pink",
             margin: 20,
-            minHeight: 120,
+            minHeight: 100,
+            maxHeight: 120,
             overflowX: "auto",
           }}
         >
@@ -50,7 +51,7 @@ const FrozenListRow = ({ row }: { row: Row }) => {
           </div>
 
           {row.urls.map((url) => (
-            <Image src={url} key={url} width={120} height={100} alt={url} />
+            <Image src={url} key={url} height={60} width={100} alt={url} />
           ))}
         </div>
       </div>

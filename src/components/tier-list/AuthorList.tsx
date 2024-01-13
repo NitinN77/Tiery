@@ -1,6 +1,7 @@
 import React from "react"
 import { Droppable, Draggable } from "react-beautiful-dnd"
 import { Row } from "@/types/tierlist"
+import Image from "next/image"
 
 interface Props {
   row: Row
@@ -85,7 +86,7 @@ export const AuthorList: React.FC<Props> = ({
                     {...dragProvided.draggableProps}
                     ref={dragProvided.innerRef}
                   >
-                    <img style={{ width: 100 }} src={url} />
+                    <Image alt={url} width={100} height={120} src={url} />
                   </div>
                 )}
               </Draggable>
