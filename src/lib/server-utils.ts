@@ -17,7 +17,6 @@ export async function getUser({
 }: {
   queryUserFromDB: boolean
 }): Promise<GetUserResponse> {
-  // @ts-ignore
   const session = await auth()
 
   if (!session) {

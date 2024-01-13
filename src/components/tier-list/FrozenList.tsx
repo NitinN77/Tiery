@@ -16,6 +16,7 @@ const FrozenList = ({ rows }: PageProps) => {
 }
 
 const FrozenListRow = ({ row }: { row: Row }) => {
+  const imageSize = 130
   return (
     <div>
       <div>
@@ -24,8 +25,8 @@ const FrozenListRow = ({ row }: { row: Row }) => {
             display: "flex",
             backgroundColor: "pink",
             margin: 20,
-            minHeight: 100,
-            maxHeight: 120,
+            minHeight: imageSize,
+            maxHeight: imageSize,
             overflowX: "auto",
           }}
         >
@@ -51,7 +52,13 @@ const FrozenListRow = ({ row }: { row: Row }) => {
           </div>
 
           {row.urls.map((url) => (
-            <Image src={url} key={url} height={60} width={100} alt={url} />
+            <Image
+              src={url}
+              key={url}
+              height={imageSize}
+              width={imageSize}
+              alt={url}
+            />
           ))}
         </div>
       </div>
