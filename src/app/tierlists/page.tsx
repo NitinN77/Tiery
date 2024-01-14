@@ -12,6 +12,7 @@ export default async function Page() {
           rows={tierlist.data as Row[]}
           creator={tierlist.creator!.name!}
           creatorId={tierlist.creator!.id}
+          templateName={tierlist.template?.name!}
         />
       ))}
     </div>

@@ -2,18 +2,24 @@ import { Row } from "@/types/tierlist"
 import Image from "next/image"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
+import Link from "next/link"
 
 type PageProps = {
   rows: Row[]
   creator: string
   creatorId: string
+  templateName: string
 }
 
-const FrozenList = ({ rows, creator, creatorId }: PageProps) => {
+const FrozenList = ({ rows, creator, creatorId, templateName }: PageProps) => {
   return (
     <div>
       <div className="flex justify-between content-center mx-3">
-        <Button>Make your own version</Button>
+        <Link
+          href={`${process.env.NEXTAUTH_URL}/templates/${creatorId}/${templateName}/createlist`}
+        >
+          <Button>Make your own version</Button>
+        </Link>
         <div>by {creator}</div>
       </div>
       {rows.map((row, i) => (
