@@ -40,21 +40,23 @@ const TierList = ({ images, templateName }: PageProps) => {
       }}
     >
       <div>
-        <div className="flex justify-between">
-          <Button
-            onClick={() => {
-              setRows([
-                {
-                  id: randomBytes(10).toString("hex"),
-                  label: "",
-                  urls: [],
-                },
-                ...rows,
-              ])
-            }}
-          >
-            Add Row
-          </Button>
+        <div className="flex justify-between mx-3">
+          <div className="flex">
+            <Button
+              onClick={() => {
+                setRows([
+                  {
+                    id: randomBytes(10).toString("hex"),
+                    label: "",
+                    urls: [],
+                  },
+                  ...rows,
+                ])
+              }}
+            >
+              Add Row
+            </Button>
+          </div>
           <form action={uploadTierlistWrapper}>
             <Button>Save</Button>
           </form>
