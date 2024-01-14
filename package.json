@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "migrate": "pnpm drizzle-kit generate:pg",
-    "apply": "pnpm tsx ./src/database/migrate.ts"
+    "migrate": "npm drizzle-kit generate:pg",
+    "apply": "npm tsx ./src/database/migrate.ts"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^0.3.12",
