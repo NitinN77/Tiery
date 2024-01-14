@@ -1,14 +1,21 @@
 import { Row } from "@/types/tierlist"
 import Image from "next/image"
 import { Input } from "../ui/input"
+import { Button } from "../ui/button"
 
 type PageProps = {
   rows: Row[]
+  creator: string
+  creatorId: string
 }
 
-const FrozenList = ({ rows }: PageProps) => {
+const FrozenList = ({ rows, creator, creatorId }: PageProps) => {
   return (
     <div>
+      <div className="flex justify-between content-center mx-3">
+        <Button>Make your own version</Button>
+        <div>by {creator}</div>
+      </div>
       {rows.map((row, i) => (
         <FrozenListRow key={row.id} row={row} />
       ))}

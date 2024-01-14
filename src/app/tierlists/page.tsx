@@ -7,7 +7,12 @@ export default async function Page() {
   return (
     <div className="flex flex-col space-y-9">
       {tierlists.map((tierlist) => (
-        <FrozenList key={tierlist.id} rows={tierlist.data as Row[]} />
+        <FrozenList
+          key={tierlist.id}
+          rows={tierlist.data as Row[]}
+          creator={tierlist.creator!.name!}
+          creatorId={tierlist.creator!.id}
+        />
       ))}
     </div>
   )

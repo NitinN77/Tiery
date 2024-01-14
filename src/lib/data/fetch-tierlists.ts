@@ -1,7 +1,10 @@
 import { db } from "@/database/db"
-import { tierlists } from "@/database/schema"
 
 export async function fetchTierlists() {
-  const fetchedTierlists = await db.select().from(tierlists)
+  const fetchedTierlists = await db.query.tierlists.findMany({
+    with: {
+      creator: true,
+    },
+  })
   return fetchedTierlists
 }
