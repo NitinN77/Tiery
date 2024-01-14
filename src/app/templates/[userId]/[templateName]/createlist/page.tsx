@@ -9,9 +9,9 @@ export default async function Page({
   const images = await fetchImagesInTemplate(decodeURI(params.templateName))
   return (
     <div>
-      {/* {images && (
+      {images && (
         <TierList images={images} templateName={params.templateName} />
-      )} */}
+      )}
     </div>
   )
 }
