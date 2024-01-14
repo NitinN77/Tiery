@@ -23,6 +23,7 @@ export const users = pgTable("user", {
 
 export const usersRelations = relations(users, ({ many }) => ({
   templates: many(templates),
+  tierlists: many(tierlists),
 }))
 
 export type userSelectSchema = InferSelectModel<typeof users>
@@ -92,6 +93,7 @@ export const templatesRelations = relations(templates, ({ one, many }) => ({
 export const tierlists = pgTable("tierlists", {
   id: serial("id").notNull().primaryKey(),
   templateId: integer("templateId"),
+  userId: text("userId"),
   data: jsonb("data"),
 })
 
@@ -99,5 +101,9 @@ export const tierlistsRelations = relations(tierlists, ({ one }) => ({
   template: one(templates, {
     fields: [tierlists.templateId],
     references: [templates.id],
+  }),
+  creator: one(users, {
+    fields: [tierlists.userId],
+    references: [users.id],
   }),
 }))

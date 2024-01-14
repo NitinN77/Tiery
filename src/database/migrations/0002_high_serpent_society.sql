@@ -1,0 +1,1 @@
+ALTER TABLE "tierlists" ADD COLUMN "userId" text;
