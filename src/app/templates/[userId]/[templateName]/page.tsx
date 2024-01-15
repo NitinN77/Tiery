@@ -21,7 +21,12 @@ export default async function Page({
       <div className="flex justify-between">
         <div className="flex space-x-2">
           <p className="text-2xl font-bold">{decodeURI(params.templateName)}</p>
-          {user.user?.id === params.userId && <DeleteTemplateButton />}
+          {user.user?.id === params.userId && (
+            <DeleteTemplateButton
+              userId={params.userId}
+              templateName={params.templateName}
+            />
+          )}
         </div>
         <CreatelistButton />
       </div>

@@ -1,5 +1,5 @@
 "use server"
 
-export async function deleteTemplate() {
-  console.log("delete template")
+export async function deleteTemplate(userId: string, templateName: string) {
+  console.log(userId, templateName)
 }
