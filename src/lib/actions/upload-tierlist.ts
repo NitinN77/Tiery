@@ -26,5 +26,4 @@ export async function uploadTierlist(
 
   revalidatePath("/tierlists")
   redirect("/tierlists")
-  return { message: "Uploaded tierlist" }
 }
