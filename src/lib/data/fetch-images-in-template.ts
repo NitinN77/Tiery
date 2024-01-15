@@ -1,17 +1,16 @@
 import "dotenv/config"
-import { getS3Client, getUser } from "../server-utils"
+import { getS3Client } from "../server-utils"
 import { ListObjectsV2Output } from "@aws-sdk/client-s3"
 
-export async function fetchImagesInTemplate(templateName: string) {
-  const { user } = await getUser({ queryUserFromDB: true })
-  if (!user) {
-    throw Error("Authentication Error")
-  }
+export async function fetchImagesInTemplate(
+  templateName: string,
+  userId: string
+) {
   const s3 = getS3Client()
 
   const data: ListObjectsV2Output = await s3.listObjectsV2({
     Bucket: process.env.BUCKET_NAME,
-    Prefix: `${user.id}/${templateName}/`,
+    Prefix: `${userId}/${templateName}/`,
   })
 
   if (data.Contents) {

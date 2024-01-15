@@ -4,9 +4,12 @@ import { fetchImagesInTemplate } from "@/lib/data/fetch-images-in-template"
 export default async function Page({
   params,
 }: {
-  params: { templateName: string }
+  params: { templateName: string; userId: string }
 }) {
-  const images = await fetchImagesInTemplate(decodeURI(params.templateName))
+  const images = await fetchImagesInTemplate(
+    decodeURI(params.templateName),
+    params.userId
+  )
   return (
     <div>
       {images && (

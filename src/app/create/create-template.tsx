@@ -3,18 +3,18 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { uploadImages } from "@/lib/actions/upload-images"
+import { uploadTemplate } from "@/lib/actions/upload-template"
 import { useEffect, useRef } from "react"
 import { useFormState, useFormStatus } from "react-dom"
 import { toast } from "sonner"
 
 export default function CreateTemplate() {
   const initialState = { message: null, errors: {} }
-  const [state, dispatch] = useFormState(uploadImages, initialState)
+  const [state, dispatch] = useFormState(uploadTemplate, initialState)
   const formRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
-    if (state.message === "Uploaded images") {
+    if (state.message === "Uploaded template") {
       toast("Template created and images uploaded successfully!")
     }
   }, [state])

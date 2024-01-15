@@ -8,7 +8,7 @@ import { revalidatePath } from "next/cache"
 import { db } from "@/database/db"
 import { templates } from "@/database/schema"
 
-const uploadImagesRequest = z.object({
+const uploadTemplateRequest = z.object({
   pictures: z.instanceof(File).array(),
   templateName: z
     .string()
@@ -24,7 +24,7 @@ export type State = {
   message?: string | null
 }
 
-export async function uploadImages(
+export async function uploadTemplate(
   prevState: State,
   formData: FormData
 ): Promise<State> {
@@ -32,7 +32,7 @@ export async function uploadImages(
   if (!user) {
     throw Error("User not found")
   }
-  const parsedInput = uploadImagesRequest.safeParse({
+  const parsedInput = uploadTemplateRequest.safeParse({
     pictures: formData.getAll("pictures"),
     templateName: formData.get("templateName"),
   })
@@ -85,5 +85,5 @@ export async function uploadImages(
 
   revalidatePath("/templates")
 
-  return { message: "Uploaded images" }
+  return { message: "Uploaded template" }
 }
