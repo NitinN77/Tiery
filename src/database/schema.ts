@@ -95,6 +95,7 @@ export const tierlists = pgTable("tierlists", {
   templateId: integer("templateId"),
   userId: text("userId"),
   data: jsonb("data"),
+  name: text("name"),
 })
 
 export const tierlistsRelations = relations(tierlists, ({ one }) => ({
