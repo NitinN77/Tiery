@@ -4,6 +4,7 @@ import { Row } from "@/types/tierlist"
 
 export default async function Page() {
   const tierlists = await fetchTierlists()
+
   return (
     <div className="flex flex-col space-y-9">
       {tierlists.map((tierlist) => (
