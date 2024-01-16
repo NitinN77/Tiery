@@ -7,6 +7,7 @@ import { randomBytes } from "crypto"
 import { useState } from "react"
 import { Button } from "../ui/button"
 import { uploadTierlist } from "@/lib/actions/upload-tierlist"
+import { Input } from "../ui/input"
 
 type PageProps = {
   images: string[]
@@ -40,27 +41,33 @@ const TierList = ({ images, templateName }: PageProps) => {
       }}
     >
       <div>
-        <div className="flex justify-between mx-3">
-          <div className="flex">
-            <Button
-              onClick={() => {
-                setRows([
-                  {
-                    id: randomBytes(10).toString("hex"),
-                    label: "",
-                    urls: [],
-                  },
-                  ...rows,
-                ])
-              }}
-            >
-              Add Row
-            </Button>
-          </div>
-          <form action={uploadTierlistWrapper}>
+        <form action={uploadTierlistWrapper}>
+          <div className="flex justify-between mx-3 md:mt-0 mt-3 space-x-2">
+            <div className="flex space-x-4 md:w-3/6 w-full">
+              <Button
+                className="whitespace-nowrap"
+                onClick={() => {
+                  setRows([
+                    {
+                      id: randomBytes(10).toString("hex"),
+                      label: "",
+                      urls: [],
+                    },
+                    ...rows,
+                  ])
+                }}
+              >
+                Add Row
+              </Button>
+              <Input
+                placeholder="Give a name to your tierlist"
+                name="tierlistName"
+                id="tierlistName"
+              />
+            </div>
             <Button>Save</Button>
-          </form>
-        </div>
+          </div>
+        </form>
         {rows.map((row, i) => (
           <AuthorList
             internalScroll

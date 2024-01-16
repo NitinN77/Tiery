@@ -4,6 +4,7 @@ import { Row } from "@/types/tierlist"
 
 export default async function Page() {
   const tierlists = await fetchTierlists()
+
   return (
     <div className="flex flex-col space-y-9">
       {tierlists.map((tierlist) => (
@@ -13,6 +14,7 @@ export default async function Page() {
           creator={tierlist.creator!.name!}
           creatorId={tierlist.creator!.id}
           templateName={tierlist.template?.name!}
+          tierlistName={tierlist.name || ""}
         />
       ))}
     </div>

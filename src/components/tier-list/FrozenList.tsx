@@ -9,17 +9,31 @@ type PageProps = {
   creator: string
   creatorId: string
   templateName: string
+  tierlistName: string
 }
 
-const FrozenList = ({ rows, creator, creatorId, templateName }: PageProps) => {
+const FrozenList = ({
+  rows,
+  creator,
+  creatorId,
+  templateName,
+  tierlistName,
+}: PageProps) => {
   return (
     <div>
       <div className="flex justify-between content-center mx-3">
-        <Link
-          href={`${process.env.NEXTAUTH_URL}/templates/${creatorId}/${templateName}/createlist`}
-        >
-          <Button>Make your own version</Button>
-        </Link>
+        <div className="flex content-center space-x-4">
+          {tierlistName.length ? (
+            <div className="font-semibold text-2xl">{tierlistName}</div>
+          ) : (
+            <></>
+          )}
+          <Link
+            href={`${process.env.NEXTAUTH_URL}/templates/${creatorId}/${templateName}/createlist`}
+          >
+            <Button>Make your own version</Button>
+          </Link>
+        </div>
         <div>by {creator}</div>
       </div>
       {rows.map((row, i) => (
