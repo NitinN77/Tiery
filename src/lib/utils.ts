@@ -6,11 +6,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export async function logError(message: any) {
+export async function logError(message: string) {
   if (process.env.LOGGER_URL) {
     await fetch(process.env.LOGGER_URL, {
       method: "POST",
-      body: JSON.stringify(message),
+      body: JSON.stringify({ message }),
     })
   }
 }
