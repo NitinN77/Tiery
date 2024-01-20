@@ -7,6 +7,7 @@ import z from "zod"
 import { revalidatePath } from "next/cache"
 import { db } from "@/database/db"
 import { templates } from "@/database/schema"
+import { logError } from "../utils"
 
 const uploadTemplateRequest = z.object({
   pictures: z.instanceof(File).array(),
@@ -74,8 +75,9 @@ export async function uploadTemplate(
           Bucket: process.env.BUCKET_NAME,
           Key: `${user.id}/${parsedInput.data.templateName}/${fileName}`,
         },
-        (err) => {
+        async (err) => {
           if (err) {
+            await logError(err)
             return { message: "Error uploading image" }
           }
         }
