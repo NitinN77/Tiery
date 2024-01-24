@@ -1,3 +1,3 @@
 # Tiery
 
-## For the love of tier lists!
+### For the love of tier lists!
